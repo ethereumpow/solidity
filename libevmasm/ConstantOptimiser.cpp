@@ -103,9 +103,9 @@ bigint ConstantOptimisationMethod::dataGas(bytes const& _data) const
 	return bigint(GasMeter::dataGas(_data, m_params.isCreation, m_params.evmVersion));
 }
 
-size_t ConstantOptimisationMethod::bytesRequired(AssemblyItems const& _items)
+size_t ConstantOptimisationMethod::bytesRequired(AssemblyItems const& _items, langutil::EVMVersion _evmVersion)
 {
-	return evmasm::bytesRequired(_items, 3, Precision::Approximate); // assume 3 byte addresses
+	return evmasm::bytesRequired(_items, 3, _evmVersion, Precision::Approximate); // assume 3 byte addresses
 }
 
 void ConstantOptimisationMethod::replaceConstants(
@@ -146,7 +146,7 @@ bigint CodeCopyMethod::gasNeeded() const
 		// Run gas: we ignore memory increase costs
 		simpleRunGas(copyRoutine(), m_params.evmVersion) + GasCosts::copyGas,
 		// Data gas for copy routines: Some bytes are zero, but we ignore them.
-		bytesRequired(copyRoutine()) * (m_params.isCreation ? GasCosts::txDataNonZeroGas(m_params.evmVersion) : GasCosts::createDataGas),
+		bytesRequired(copyRoutine(), m_params.evmVersion) * (m_params.isCreation ? GasCosts::txDataNonZeroGas(m_params.evmVersion) : GasCosts::createDataGas),
 		// Data gas for data itself
 		dataGas(toBigEndian(m_value))
 	);
@@ -362,7 +362,7 @@ bigint ComputeMethod::gasNeeded(AssemblyItems const& _routine) const
 	return combineGas(
 		simpleRunGas(_routine, m_params.evmVersion) + numExps * (GasCosts::expGas + GasCosts::expByteGas(m_params.evmVersion)),
 		// Data gas for routine: Some bytes are zero, but we ignore them.
-		bytesRequired(_routine) * (m_params.isCreation ? GasCosts::txDataNonZeroGas(m_params.evmVersion) : GasCosts::createDataGas),
+		bytesRequired(_routine, m_params.evmVersion) * (m_params.isCreation ? GasCosts::txDataNonZeroGas(m_params.evmVersion) : GasCosts::createDataGas),
 		0
 	);
 }

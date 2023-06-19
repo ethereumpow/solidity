@@ -1000,7 +1000,7 @@ BOOST_AUTO_TEST_CASE(clear_unreachable_code)
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMP
 	};
-	PeepholeOptimiser peepOpt(items);
+	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	BOOST_REQUIRE(peepOpt.optimise());
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 		items.begin(), items.end(),
@@ -1026,7 +1026,7 @@ BOOST_AUTO_TEST_CASE(peephole_double_push)
 		u256(4),
 		u256(5)
 	};
-	PeepholeOptimiser peepOpt(items);
+	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	BOOST_REQUIRE(peepOpt.optimise());
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 		items.begin(), items.end(),
@@ -1042,7 +1042,7 @@ BOOST_AUTO_TEST_CASE(peephole_pop_calldatasize)
 		Instruction::LT,
 		Instruction::POP
 	};
-	PeepholeOptimiser peepOpt(items);
+	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	for (size_t i = 0; i < 3; i++)
 		BOOST_CHECK(peepOpt.optimise());
 	BOOST_CHECK(items.empty());
@@ -1075,7 +1075,7 @@ BOOST_AUTO_TEST_CASE(peephole_commutative_swap1)
 			u256(4),
 			u256(5)
 		};
-		PeepholeOptimiser peepOpt(items);
+		PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 		BOOST_REQUIRE(peepOpt.optimise());
 		BOOST_CHECK_EQUAL_COLLECTIONS(
 			items.begin(), items.end(),
@@ -1113,7 +1113,7 @@ BOOST_AUTO_TEST_CASE(peephole_noncommutative_swap1)
 			u256(4),
 			u256(5)
 		};
-		PeepholeOptimiser peepOpt(items);
+		PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 		BOOST_REQUIRE(!peepOpt.optimise());
 		BOOST_CHECK_EQUAL_COLLECTIONS(
 			items.begin(), items.end(),
@@ -1148,7 +1148,7 @@ BOOST_AUTO_TEST_CASE(peephole_swap_comparison)
 			u256(4),
 			u256(5)
 		};
-		PeepholeOptimiser peepOpt(items);
+		PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 		BOOST_REQUIRE(peepOpt.optimise());
 		BOOST_CHECK_EQUAL_COLLECTIONS(
 			items.begin(), items.end(),
@@ -1174,7 +1174,7 @@ BOOST_AUTO_TEST_CASE(peephole_truthy_and)
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMPI
 	};
-	PeepholeOptimiser peepOpt(items);
+	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	BOOST_REQUIRE(peepOpt.optimise());
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 		items.begin(), items.end(),
@@ -1207,7 +1207,7 @@ BOOST_AUTO_TEST_CASE(peephole_iszero_iszero_jumpi)
 		u256(0x20),
 		Instruction::RETURN
 	};
-	PeepholeOptimiser peepOpt(items);
+	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	BOOST_REQUIRE(peepOpt.optimise());
 	BOOST_CHECK_EQUAL_COLLECTIONS(
 	  items.begin(), items.end(),

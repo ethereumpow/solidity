@@ -520,7 +520,7 @@ bool PeepholeOptimiser::optimise()
 		);
 	if (m_optimisedItems.size() < m_items.size() || (
 		m_optimisedItems.size() == m_items.size() && (
-			evmasm::bytesRequired(m_optimisedItems, 3, approx) < evmasm::bytesRequired(m_items, 3, approx) ||
+			evmasm::bytesRequired(m_optimisedItems, 3, m_evmVersion, approx) < evmasm::bytesRequired(m_items, 3, m_evmVersion, approx) ||
 			numberOfPops(m_optimisedItems) > numberOfPops(m_items)
 		)
 	))
