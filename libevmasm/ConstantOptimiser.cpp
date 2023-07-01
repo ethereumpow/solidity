@@ -83,10 +83,7 @@ bigint ConstantOptimisationMethod::simpleRunGas(AssemblyItems const& _items, lan
 	bigint gas = 0;
 	for (AssemblyItem const& item: _items)
 		if (item.type() == Push)
-		{
-			auto const instruction = (item.data() == u256(0) && _evmVersion.hasPush0()) ? Instruction::PUSH0 : Instruction::PUSH1;
-			gas += GasMeter::runGas(instruction, _evmVersion);
-		}
+			gas += GasMeter::pushGas(item.data(), _evmVersion);
 		else if (item.type() == Operation)
 		{
 			if (item.instruction() == Instruction::EXP)
