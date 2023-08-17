@@ -123,7 +123,7 @@ public:
 	AssemblyItems execute(Assembly& _assembly) const override;
 
 protected:
-	AssemblyItems const& copyRoutine() const;
+	AssemblyItems copyRoutine(AssemblyItem* _pushData = nullptr) const;
 };
 
 /**
