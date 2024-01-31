@@ -80,8 +80,8 @@ contract D {
 // ----
 // constructor(), 1 ether ->
 // gas irOptimized: 430265
-// gas legacy: 690264
-// gas legacyOptimized: 412819
+// gas legacy: 690263
+// gas legacyOptimized: 414115
 // exists() -> false
 // test_deploy_and_terminate() ->
 // ~ emit Deployed(address,bytes32) from 0x137aa4dfc0911524504fcd4d98501f179bc13b4a: 0x7e6580007e709ac52945fae182c61131d42634e8, 0x1234000000000000000000000000000000000000000000000000000000000000

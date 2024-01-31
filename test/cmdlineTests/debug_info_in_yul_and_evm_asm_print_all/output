@@ -42,6 +42,9 @@ sub_0: assembly {
       eq
       tag_3
       jumpi
+      0x00
+      dup1
+      revert
     tag_2:
       0x00
       dup1

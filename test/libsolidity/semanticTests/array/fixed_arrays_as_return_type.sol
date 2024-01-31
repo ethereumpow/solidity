@@ -20,4 +20,4 @@ contract B {
 // f() -> 2, 3, 4, 5, 6, 1000, 1001, 1002, 1003, 1004
 // gas irOptimized: 114404
 // gas legacy: 230001
-// gas legacyOptimized: 130637
+// gas legacyOptimized: 131242

@@ -51,7 +51,7 @@ contract test {
 // constructor()
 // gas irOptimized: 630224
 // gas legacy: 1061957
-// gas legacyOptimized: 718937
+// gas legacyOptimized: 719585
 // toSlice(string): 0x20, 11, "hello world" -> 11, 0xa0
 // gas irOptimized: 22660
 // gas legacy: 23190

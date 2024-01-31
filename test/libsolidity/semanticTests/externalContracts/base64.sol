@@ -35,7 +35,7 @@ contract test {
 // constructor()
 // gas irOptimized: 405832
 // gas legacy: 735054
-// gas legacyOptimized: 522722
+// gas legacyOptimized: 523370
 // encode_inline_asm(bytes): 0x20, 0 -> 0x20, 0
 // encode_inline_asm(bytes): 0x20, 1, "f" -> 0x20, 4, "Zg=="
 // encode_inline_asm(bytes): 0x20, 2, "fo" -> 0x20, 4, "Zm8="
@@ -56,5 +56,5 @@ contract test {
 // gas legacyOptimized: 1132031
 // encode_no_asm_large()
 // gas irOptimized: 3206081
-// gas legacy: 4587075
+// gas legacy: 4586075
 // gas legacyOptimized: 2823075
