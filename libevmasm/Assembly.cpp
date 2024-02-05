@@ -792,10 +792,20 @@ std::map<u256, u256> const& Assembly::optimiseInternal(
 				iter = eliminator.feedItems(iter, m_items.end(), usesMSize);
 				bool shouldReplace = false;
 				AssemblyItems optimisedChunk;
+				auto runGas = [&](AssemblyItems const& items) {
+					GasMeter gasMeter{std::make_shared<KnownState>(eliminator.getKnownState()), _settings.evmVersion};
+					GasMeter::GasConsumption gas;
+					for (auto const& item: items)
+						gas += gasMeter.estimateMax(item);
+					return gas;
+				};
 				try
 				{
 					optimisedChunk = eliminator.getOptimizedItems();
-					shouldReplace = (optimisedChunk.size() < static_cast<size_t>(iter - orig));
+					shouldReplace = (
+						optimisedChunk.size()  < static_cast<size_t>(iter - orig) &&
+						!(runGas(AssemblyItems(orig, iter)) < runGas(optimisedChunk))
+					);
 				}
 				catch (StackTooDeepException const&)
 				{

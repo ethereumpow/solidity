@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(location_test)
 	std::shared_ptr<std::string> sourceName = std::make_shared<std::string>();
 	bool hasShifts = solidity::test::CommonOptions::get().evmVersion().hasBitwiseShifting();
 	bool hasPush0 = solidity::test::CommonOptions::get().evmVersion().hasPush0();
-	
+
 	auto codegenCharStream = std::make_shared<CharStream>("", "--CODEGEN--");
 
 	std::vector<SourceLocation> locations;
