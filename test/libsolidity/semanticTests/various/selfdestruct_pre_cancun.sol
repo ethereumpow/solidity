@@ -63,7 +63,7 @@ contract D {
 // ----
 // constructor(), 1 ether ->
 // gas irOptimized: 242428
-// gas legacy: 373563
+// gas legacy: 374427
 // gas legacyOptimized: 235824
 // exists() -> false
 // test_create_and_terminate() ->

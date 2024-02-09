@@ -13,7 +13,7 @@ contract D is C {
 // ----
 // constructor(): 2, 0 ->
 // gas irOptimized: 121805
-// gas legacy: 137193
-// gas legacyOptimized: 119196
+// gas legacy: 137192
+// gas legacyOptimized: 119195
 // i() -> 2
 // k() -> 1

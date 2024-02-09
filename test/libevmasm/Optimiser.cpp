@@ -1026,6 +1026,18 @@ BOOST_AUTO_TEST_CASE(peephole_double_push)
 		u256(4),
 		u256(5)
 	};
+
+	// `PUSH0 PUSH0` is cheaper than `DUP1 PUSH0`
+	if (solidity::test::CommonOptions::get().evmVersion() >= EVMVersion::shanghai())
+		expectation = {
+			u256(0),
+			u256(0),
+			u256(5),
+			Instruction::DUP1,
+			u256(4),
+			u256(5)
+		};
+
 	PeepholeOptimiser peepOpt(items, solidity::test::CommonOptions::get().evmVersion());
 	BOOST_REQUIRE(peepOpt.optimise());
 	BOOST_CHECK_EQUAL_COLLECTIONS(
