@@ -38,7 +38,6 @@ sub_0: assembly {
       eq
       tag_3
       jumpi
-      revert(0x00, 0x00)
     tag_2:
       revert(0x00, 0x00)
         /* "optimize_full_storage_write/input.sol":111:211  function f() public {... */

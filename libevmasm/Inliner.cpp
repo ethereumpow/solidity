@@ -251,7 +251,13 @@ void Inliner::optimise()
 			AssemblyItem const& nextItem = *next(it);
 			if (item.type() == PushTag && nextItem == Instruction::JUMP)
 			{
-				if (std::optional<size_t> tag = getLocalTag(item))
+				std::optional<AssemblyItem> nextNextItem = next(next(it)) != m_items.end() ? std::make_optional(*next(next(it))) : std::nullopt;
+				std::optional<size_t> possibleNextTag = nextNextItem ? getLocalTag(*nextNextItem) : std::nullopt;
+				size_t nextTag = possibleNextTag ? *possibleNextTag : 0;
+				if (
+					std::optional<size_t> tag = getLocalTag(item);
+					tag && tag != nextTag
+				)
 					if (auto* inlinableBlock = util::valueOrNullptr(inlinableBlocks, *tag))
 						if (auto exitItem = shouldInline(*tag, nextItem, *inlinableBlock))
 						{

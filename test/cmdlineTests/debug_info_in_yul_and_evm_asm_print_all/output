@@ -38,7 +38,6 @@ sub_0: assembly {
       eq
       tag_3
       jumpi
-      revert(0x00, 0x00)
     tag_2:
       revert(0x00, 0x00)
         /* "debug_info_in_yul_and_evm_asm_print_all/input.sol":77:99  function f() public {} */

@@ -69,7 +69,6 @@ sub_0: assembly {
       eq
       tag_3
       jumpi
-      revert(0x00, 0x00)
     tag_2:
       revert(0x00, 0x00)
         /* "optimizer_BlockDeDuplicator/input.sol":138:174  function f() public { true ? 1 : 3;} */

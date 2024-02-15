@@ -37,7 +37,7 @@ contract D {
 // constructor(), 2 ether ->
 // gas irOptimized: 223918
 // gas legacy: 374443
-// gas legacyOptimized: 241111
+// gas legacyOptimized: 239815
 // balance: 0x1111111111111111111111111111111111111111 -> 0
 // balance: 0x2222222222222222222222222222222222222222 -> 0
 // balance -> 2000000000000000000
@@ -45,7 +45,7 @@ contract D {
 // test_deploy_and_terminate_twice() ->
 // gas irOptimized: 135350
 // gas legacy: 165586
-// gas legacyOptimized: 144996
+// gas legacyOptimized: 144396
 // exists() -> false
 // balance: 0x1111111111111111111111111111111111111111 -> 1000000000000000000
 // balance: 0x2222222222222222222222222222222222222222 -> 0

@@ -39,8 +39,8 @@ contract D {
 // fview() -> FAILURE
 // gas irOptimized: 98438588
 // gas legacy: 98438773
-// gas legacyOptimized: 98438588
+// gas legacyOptimized: 98438579
 // fpure() -> FAILURE
 // gas irOptimized: 98438589
 // gas legacy: 98438773
-// gas legacyOptimized: 98438589
+// gas legacyOptimized: 98438579

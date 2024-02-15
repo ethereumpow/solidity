@@ -19,5 +19,5 @@ contract D {
 // constructor(): 2 ->
 // gas irOptimized: 192866
 // gas legacy: 241605
-// gas legacyOptimized: 194489
+// gas legacyOptimized: 193193
 // f() -> 2

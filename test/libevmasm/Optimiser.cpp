@@ -1859,11 +1859,13 @@ BOOST_AUTO_TEST_CASE(inliner_stop)
 	AssemblyItems items{
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMP,
+		AssemblyItem(0),	// dummy item, just so inliner doesn't ignore the jump immediately next to the tag itself
 		AssemblyItem(Tag, 1),
 		Instruction::STOP
 	};
 	AssemblyItems expectation{
 		Instruction::STOP,
+		AssemblyItem(0),
 		AssemblyItem(Tag, 1),
 		Instruction::STOP
 	};
@@ -1897,6 +1899,7 @@ BOOST_AUTO_TEST_CASE(inliner_revert)
 	AssemblyItems items{
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMP,
+		AssemblyItem(0),	// dummy item, just so inliner doesn't ignore the jump immediately next to the tag itself
 		AssemblyItem(Tag, 1),
 		u256(0),
 		Instruction::DUP1,
@@ -1906,6 +1909,7 @@ BOOST_AUTO_TEST_CASE(inliner_revert)
 		u256(0),
 		Instruction::DUP1,
 		Instruction::REVERT,
+		AssemblyItem(0),
 		AssemblyItem(Tag, 1),
 		u256(0),
 		Instruction::DUP1,
@@ -1926,6 +1930,7 @@ BOOST_AUTO_TEST_CASE(inliner_revert_push0)
 	AssemblyItems items{
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMP,
+		AssemblyItem(0),	// dummy item, just so inliner doesn't ignore the jump immediately next to the tag itself
 		AssemblyItem(Tag, 1),
 		u256(0),
 		u256(0),
@@ -1935,6 +1940,7 @@ BOOST_AUTO_TEST_CASE(inliner_revert_push0)
 		u256(0),
 		u256(0),
 		Instruction::REVERT,
+		AssemblyItem(0),
 		AssemblyItem(Tag, 1),
 		u256(0),
 		u256(0),
@@ -1953,12 +1959,14 @@ BOOST_AUTO_TEST_CASE(inliner_invalid)
 	AssemblyItems items{
 		AssemblyItem(PushTag, 1),
 		Instruction::JUMP,
+		AssemblyItem(0),	// dummy item, just so inliner doesn't ignore the jump immediately next to the tag itself
 		AssemblyItem(Tag, 1),
 		Instruction::INVALID
 	};
 
 	AssemblyItems expectation = {
 		Instruction::INVALID,
+		AssemblyItem(0),
 		AssemblyItem(Tag, 1),
 		Instruction::INVALID
 	};
